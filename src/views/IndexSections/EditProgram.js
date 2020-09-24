@@ -150,9 +150,14 @@ class EditProgram extends React.Component {
       padding: "10px"
   }
     return (
-      <div className="section section-signup">
-        <img alt="..." className="path" src={require("assets/img/path5.png")} />
+      <div className="section section-basic" id="basic-elements">
 
+        <img alt="..." className="path" src={require("assets/img/path2.png")} />
+        <img
+          alt="..."
+          className="path path1"
+          src={require("assets/img/path5.png")}
+        />
         <IndexNavbar/>
 
         <Container>

@@ -79,7 +79,8 @@ onDelete(){
 }
   render() {
     return (
-            <>
+                  <div className="section section-signup">
+
               <IndexNavbar />
               <img alt="..." className="path" src={require("assets/img/path3.png")} />
 
@@ -158,7 +159,7 @@ onDelete(){
                         
       </div>
     </div>
-  </>
+  </div>
     );
   }
 }
