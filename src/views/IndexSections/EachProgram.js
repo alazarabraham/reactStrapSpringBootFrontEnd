@@ -60,7 +60,7 @@ export default class EachProgram extends React.Component {
     return (
         <div className="section section-basic" id="basic-elements">
 
-        <img alt="..." className="path" src={require("assets/img/path3.png")} />
+        <img alt="..." className="path" src={require("assets/img/path2.png")} />
         <img
           alt="..."
           className="path path1"
