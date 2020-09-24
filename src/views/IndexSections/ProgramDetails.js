@@ -43,7 +43,7 @@ export default class ProgramDetails extends React.Component {
         super(props);
         this.state={
             programDetails:'',
-            
+            studentsInProgram:[],
       iconTabs: 1,
       textTabs: 4
         }
@@ -51,6 +51,7 @@ export default class ProgramDetails extends React.Component {
 
   componentDidMount(){
     this.getIndividualProgram();
+    this.getStudentsInProgram();
 }
 getIndividualProgram(){
     let programid = this.props.match.params.programId
@@ -66,6 +67,21 @@ getIndividualProgram(){
             )
     })
     .catch(err=> console.log(err))
+}
+getStudentsInProgram(){
+  let programid = this.props.match.params.programId
+  axios.get( `http://localhost:8080/api/students`)
+  .then(response=>{
+      //setting the state to the json data, consoling it with a callback function
+      this.setState({programs:response.data},()=>{
+          this.setState({studentsInProgram: response.data}, ()=> {
+          })
+
+      }
+          
+          )
+  })
+  .catch(err=> console.log(err))
 }
 
 onDelete(){
@@ -83,6 +99,8 @@ onDelete(){
       color:"#e14eca"
 
     }
+    let programid = this.props.match.params.programId
+
     return (
                   <div className="section section-signup">
 
@@ -161,7 +179,72 @@ onDelete(){
            
           </Row>
         </Container>
-                        
+        <Container>
+    <h1 style={textalign}>Students in {this.state.programDetails.programName}</h1>
+
+          <Row>
+            <Col className="ml-auto mr-auto" md="10" xl="6">
+            
+              <Card>
+                <CardHeader>
+                  <Nav className="nav-tabs-info" role="tablist" tabs>
+                    <NavItem>
+                      <Link to={"/addstudent"}>
+                        <i className="fas fa-plus-circle" />
+                        Add Student
+                      </Link>
+                      
+                    </NavItem>
+                    
+                   
+                  </Nav>
+                </CardHeader>
+                <CardBody>
+                  <TabContent
+                    className="tab-space"
+                    activeTab={"link" + this.state.iconTabs}
+                  >
+                    <TabPane tabId="link1">
+                    <Table>
+                    <thead>
+                        <th> Id</th>
+                        <th> First Name</th>
+                        <th>Last Name</th>
+                        <th>Level </th>
+                        <th>Date of Birth</th>
+                        <th>Program Id</th>
+
+                    </thead>
+                    <tbody>
+                        {this.state.studentsInProgram.map((student,studentId)=>{
+                           if(programid == student.progId)
+                            return(
+                                <tr key={studentId}>
+                                    <td>{student.studentId}</td>
+                                    <td><Link to={`student/${student.studentId}`}>{student.firstname}</Link></td>
+                                    <td>{student.lastname}</td>
+                                    <td>{student.degreeProgram}</td>
+                                    <td>{student.dob}</td>
+                                    <td><Link to={`program/${student.progId}`}>{student.progId}</Link></td>
+
+
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+
+                </Table>
+                    </TabPane>
+                  
+                    
+                  </TabContent>
+                </CardBody>
+              </Card>
+            </Col>
+           
+          </Row>
+        
+        </Container>                
       </div>
     </div>
   </div>
