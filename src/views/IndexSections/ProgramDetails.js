@@ -142,13 +142,14 @@ onDelete(){
                     <TabPane tabId="link1">
                     <Table>
                         <thead>
+                          <tr>
                             <th>Program Id</th>
 
                             <th> Name</th>
                             <th> Instructor</th>
                             <th> Semester</th>
                             <th> Level</th>
-
+                          </tr>
                             
                         </thead>
                         <tbody>
