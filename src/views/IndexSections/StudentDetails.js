@@ -73,11 +73,16 @@ onDelete(){
     console.log(studentId)
     axios.delete(`http://localhost:8080/api/students/${studentId}`)
     .then(response=>{
-        this.props.history.push("/");
+        this.props.history.push("/students");
     })
     .catch(error=>console.log(error))
 }
   render() {
+    const textalign={
+      textAlign:"center",
+      color:"#e14eca"
+
+    }
     return (
                   <div className="section section-signup">
 
@@ -89,6 +94,7 @@ onDelete(){
               <div className="section section-tabs">
 
         <Container>
+        <h1 style={textalign}>Students Details</h1>
 
           <Row>
             <Col className="ml-auto mr-auto" md="10" xl="6">
@@ -124,6 +130,8 @@ onDelete(){
                             <th> Last Name</th>
                             <th> Level</th>
                             <th>Date of Birth</th>
+                            <th>Program Id</th>
+
 
                             
                         </thead>
@@ -134,7 +142,8 @@ onDelete(){
                             <td>{this.state.studentDetails.lastname}</td>
                             <td>{this.state.studentDetails.degreeProgram}</td>
                             <td>{this.state.studentDetails.dob}</td>
-                                
+                            <td><Link to={`/program/${this.state.studentDetails.progId}`}>{this.state.studentDetails.progId}</Link></td>
+
                             
 
                         </tbody>

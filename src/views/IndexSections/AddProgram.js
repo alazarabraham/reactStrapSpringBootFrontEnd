@@ -147,7 +147,7 @@ onSubmit(e){
                         </InputGroupText>
                       </InputGroupAddon>
                       <input
-                        type="text" name="programName" ref="programName" placeholder="Program Name"
+                        type="text" name="programName" ref="programName" placeholder="Program Name" required
                         style={styleObject}
                       
                       />
@@ -163,20 +163,20 @@ onSubmit(e){
                         </InputGroupText>
                       </InputGroupAddon>
                       <input
-                        type="text" name="instructor"  ref="instructor" placeholder="Instructor"
+                        type="text" name="instructor"  ref="instructor" placeholder="Instructor" required
                         onFocus={e => this.setState({ instructorFocus: true })}
                         onBlur={e => this.setState({ instructorFocus: false })}
                         style={styleObject}
 
                       />
                     </InputGroup>
-                    <select style={selectstyle} type="text" name="semester" ref="semester" placeholder="Semester">
+                    <select style={selectstyle} type="text" name="semester" ref="semester" placeholder="Semester" required>
                         <option value="Spring ">Spring {new Date().getFullYear()}</option>
                         <option value="Summer ">Summer {new Date().getFullYear()}</option>
                         <option value="Fall ">Fall {new Date().getFullYear()}</option>
 
                     </select>
-                    <select style={selectstyle} type="text" name="level" ref="level" placeholder="Degree Program">
+                    <select style={selectstyle} type="text" name="level" ref="level" placeholder="Degree Program" required>
                         <option value="Undergraduate Program">Undergraduate Program</option>
                         <option value="Graduate Program">Graduate Program</option>
                     </select>

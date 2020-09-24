@@ -56,7 +56,10 @@ export default class EachProgram extends React.Component {
     });
   };
   render() {
-
+    const textalign={
+      textAlign:"center",
+      color:"#e14eca"
+    }
     return (
         <div className="section section-basic" id="basic-elements">
 
@@ -70,7 +73,8 @@ export default class EachProgram extends React.Component {
 
       <div className="section section-tabs">
       <div class="squares square1"></div>
-      
+      <h1 style={textalign}>Programs</h1>
+
         <Container>
           <Row>
 

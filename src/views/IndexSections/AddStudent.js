@@ -45,7 +45,33 @@ import {
  UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 class AddStudent extends React.Component {
-  state = {};
+  constructor(props){
+    super(props);
+    this.state={
+        programs:[]
+    }
+}
+
+componentDidMount(){
+this.getPrograms();
+}
+getPrograms(){
+axios.get( `http://localhost:8080/api/programs`)
+.then(response=>{
+    //setting the state to the json data, consoling it with a callback function
+    this.setState({programs:response.data},()=>{
+        this.setState({programs: response.data}, ()=> {
+        })
+
+    }
+        
+        )
+})
+.catch(err=> console.log(err))
+}
+
+
+
   addStudent(newStudent){
       
     axios.request({
@@ -65,7 +91,10 @@ onSubmit(e){
       firstname: this.refs.firstname.value,
       lastname: this.refs.lastname.value,
       degreeProgram: this.refs.degreeProgram.value,
-      dob: this.refs.dob.value
+      dob: this.refs.dob.value,
+      progId: this.refs.progId.value
+
+
 
   }
   console.log(newStudent)
@@ -76,6 +105,7 @@ onSubmit(e){
 
   
   render() {
+    console.log(this.state.programs)
       const styleObject= {
         fontFamily: 'inherit',
         border: 0,
@@ -154,7 +184,7 @@ onSubmit(e){
                         </InputGroupText>
                       </InputGroupAddon>
                       <input
-                        type="text" name="firstname" ref="firstname" placeholder="First Name"
+                        type="text" name="firstname" ref="firstname" placeholder="First Name" required
                         style={styleObject}
                       
                       />
@@ -170,7 +200,7 @@ onSubmit(e){
                         </InputGroupText>
                       </InputGroupAddon>
                       <input
-                        type="text" name="lastname"  ref="lastname" placeholder="Last Name"
+                        type="text" name="lastname"  ref="lastname" placeholder="Last Name" required
                         onFocus={e => this.setState({ lastnameFocus: true })}
                         onBlur={e => this.setState({ lastnameFocus: false })}
                         style={styleObject}
@@ -178,12 +208,26 @@ onSubmit(e){
                       />
                     </InputGroup>
                
-                    <select style={selectstyle} type="text" name="degreeProgram" ref="degreeProgram" placeholder="Degree Program">
+                    <select style={selectstyle} type="text" name="degreeProgram" ref="degreeProgram" placeholder="Degree Program" required>
                         <option value="Undergraduate Program">Undergraduate Program</option>
                         <option value="Graduate Program">Graduate Program</option>
                     </select>
-                    <input  style={selectstyle} type="date" id="start" name="dob" ref="dob"  value={this.state.dob}
-                        ></input>
+                    <input  style={selectstyle} type="date" id="start" name="dob" ref="dob"   required></input>
+                    
+                    
+                    {/* ProgramDrowdown */}
+                    <select style={selectstyle} type="progId" id="progId" name="progId" ref="progId"  placeholder="Program Name" required>
+                    <option value="" disabled selected>Select Program</option>
+
+                    {this.state.programs.map((program,programId)=>{
+                            return(
+                                   
+                                    <option key={programId} value={program.programId}>{program.programName}</option>
+                                  
+
+                            )
+                        })}
+                        </select>
                     
                     <Button  type="submit" className="btn-round" color="primary" size="lg">Submit</Button>
                    

@@ -78,6 +78,11 @@ onDelete(){
     .catch(error=>console.log(error))
 }
   render() {
+    const textalign={
+      textAlign:"center",
+      color:"#e14eca"
+
+    }
     return (
                   <div className="section section-signup">
 
@@ -89,7 +94,7 @@ onDelete(){
               <div className="section section-tabs">
 
         <Container>
-
+        <h1 style={textalign}>Program Details</h1>
           <Row>
             <Col className="ml-auto mr-auto" md="10" xl="6">
             

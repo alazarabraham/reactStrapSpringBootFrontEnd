@@ -19,7 +19,7 @@ import React from "react";
 import classnames from "classnames";
 import {Link} from 'react-router-dom'
 import IndexNavbar from '../../components/Navbars/IndexNavbar'
-
+import axios from "axios"
 // reactstrap components
 import {
   TabContent,
@@ -33,7 +33,7 @@ import {
   Nav,
   NavItem,
   Table,
-  NavLink,
+  NavLink, CardTitle
 } from "reactstrap";
 
 export default class EachStudent extends React.Component {
@@ -41,11 +41,27 @@ export default class EachStudent extends React.Component {
     super(props);
     this.state = {
       studentProp:props.students,
+      programNameForStudent:"",
 
       iconTabs: 1,
       textTabs: 4
     };
   }
+programName  
+  getProgramForStudent(input){
+    axios.get(`http://localhost:8080/api/programs/${input}`)
+    .then(response=>{
+        this.setState({
+            programNameForStudent: response.data.programName
+            
+        })
+    })
+    
+    .catch(error=>console.log(error))
+    return this.state.programNameForStudent
+
+}
+
   
   toggleTabs = (e, stateName, index) => {
     e.preventDefault();
@@ -53,8 +69,14 @@ export default class EachStudent extends React.Component {
       [stateName]: index
     });
   };
-  render() {
 
+  
+  render() {
+    const textalign={
+      textAlign:"center",
+      color:"#e14eca"
+
+    }
     return (
         <div className="section section-basic" id="basic-elements">
 
@@ -69,7 +91,8 @@ export default class EachStudent extends React.Component {
       <div className="section section-tabs">
       <div class="squares square1"></div>
         <Container>
-          
+        <h1 style={textalign}>Students</h1>
+
           <Row>
             <Col className="ml-auto mr-auto" md="10" xl="6">
             
@@ -100,6 +123,8 @@ export default class EachStudent extends React.Component {
                         <th>Last Name</th>
                         <th>Level </th>
                         <th>Date of Birth</th>
+                        <th>Program Id</th>
+
                     </thead>
                     <tbody>
                         {this.props.studentProp.map((student,studentId)=>{
@@ -110,6 +135,8 @@ export default class EachStudent extends React.Component {
                                     <td>{student.lastname}</td>
                                     <td>{student.degreeProgram}</td>
                                     <td>{student.dob}</td>
+                                    <td><Link to={`program/${student.progId}`}>{student.progId}</Link></td>
+
 
                                 </tr>
                             )

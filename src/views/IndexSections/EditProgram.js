@@ -149,8 +149,9 @@ class EditProgram extends React.Component {
       appearance: "none",
       padding: "10px"
   }
+  
     return (
-      <div className="section section-basic" id="basic-elements">
+      <div className="section section-signup">
 
         <img alt="..." className="path" src={require("assets/img/path2.png")} />
         <img
@@ -161,7 +162,7 @@ class EditProgram extends React.Component {
         <IndexNavbar/>
 
         <Container>
-            
+
           
           <Row className="row-grid justify-content-between align-items-center">
             <Col lg="6">
@@ -196,7 +197,7 @@ class EditProgram extends React.Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <input
-                        type="text" name="programName" ref="programName" placeholder="Program Name" placeholder={this.state.programName} onChange={this.handleInputChange}
+                        type="text" name="programName" ref="programName"defaultValue={this.state.programName} onChange={this.handleInputChange} required
                         style={styleObject}
                       
                       />
@@ -212,7 +213,7 @@ class EditProgram extends React.Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <input
-                        type="text" name="instructor"  ref="instructor" placeholder="Instructor" placeholder={this.state.instructor} onChange={this.handleInputChange}
+                        type="text" name="instructor"  ref="instructor" defaultValue={this.state.instructor} onChange={this.handleInputChange} required
                         onFocus={e => this.setState({ instructorFocus: true })}
                         onBlur={e => this.setState({ instructorFocus: false })}
                         style={styleObject}
@@ -220,13 +221,13 @@ class EditProgram extends React.Component {
                       />
 
                     </InputGroup>
-                    <select style={selectstyle} type="text" name="semester" ref="semester" placeholder="Semester">
+                    <select style={selectstyle} type="text" name="semester" ref="semester" defaultValue={this.state.semester} required>
                         <option value="Spring ">Spring {new Date().getFullYear()}</option>
                         <option value="Summer ">Summer {new Date().getFullYear()}</option>
                         <option value="Fall ">Fall {new Date().getFullYear()}</option>
 
                     </select>
-                    <select style={selectstyle} type="text" name="level" ref="level" placeholder="Degree Program">
+                    <select style={selectstyle} type="text" name="level" ref="level" defaultValue={this.state.level} required>
                         <option value="Undergraduate Program">Undergraduate Program</option>
                         <option value="Graduate Program">Graduate Program</option>
                     </select>

@@ -50,7 +50,10 @@ class EditStudent extends React.Component {
             firstname:"",
             lastname:"",
             degreeProgram:"",
-            dob:""
+            dob:"",
+            progId:"",
+            programs:[]
+
 
         }
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -58,7 +61,22 @@ class EditStudent extends React.Component {
 
   componentDidMount(){
       this.getEditDetails();
+      this.getPrograms();
   }
+  getPrograms(){
+    axios.get( `http://localhost:8080/api/programs`)
+    .then(response=>{
+        //setting the state to the json data, consoling it with a callback function
+        this.setState({programs:response.data},()=>{
+            this.setState({programs: response.data}, ()=> {
+            })
+    
+        }
+            
+            )
+    })
+    .catch(err=> console.log(err))
+    }
 
   getEditDetails(){
     let studentId = this.props.match.params.studentId;
@@ -70,6 +88,8 @@ class EditStudent extends React.Component {
             lastname: response.data.lastname,
             degreeProgram: response.data.degreeProgram,
             dob: response.data.dob,
+            progId: response.data.progId,
+
         })
     })
     .catch(error=>console.log(error))
@@ -93,7 +113,9 @@ class EditStudent extends React.Component {
         firstname: this.refs.firstname.value,
         lastname: this.refs.lastname.value,
         degreeProgram: this.refs.degreeProgram.value,
-        dob: this.refs.dob.value
+        dob: this.refs.dob.value,
+        progId: this.refs.progId.value
+
     }
     this.editStudent(newStudent)    
     e.preventDefault();
@@ -109,12 +131,16 @@ class EditStudent extends React.Component {
       const lastname = value.instructor;
       const degreeProgram = value.degreeProgram;
       const dob = value.dob;
+      const progId = value.progId;
+
 
       this.setState({
           [firstname]:value,
           [lastname]:value,
           [degreeProgram]:value,
-          [dob]:value
+          [dob]:value,
+          [progId]:value
+
 
       })
   }
@@ -192,7 +218,7 @@ class EditStudent extends React.Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <input
-                        type="text" name="firstname" ref="firstname" placeholder="First Name" placeholder={this.state.firstname} onChange={this.handleInputChange}
+                        type="text" name="firstname" ref="firstname"  defaultValue={this.state.firstname} onChange={this.handleInputChange} required
                         style={styleObject}
                       
                       />
@@ -208,7 +234,7 @@ class EditStudent extends React.Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <input
-                        type="text" name="lastname"  ref="lastname" placeholder="lastname" placeholder={this.state.lastname} onChange={this.handleInputChange}
+                        type="text" name="lastname"  ref="lastname"  defaultValue={this.state.lastname} onChange={this.handleInputChange} required
                         onFocus={e => this.setState({ instructorFocus: true })}
                         onBlur={e => this.setState({ instructorFocus: false })}
                         style={styleObject}
@@ -216,14 +242,30 @@ class EditStudent extends React.Component {
                       />
 
                     </InputGroup>
-                    <select style={selectstyle} type="text" name="degreeProgram" ref="degreeProgram" >
+                    <select style={selectstyle} type="text" name="degreeProgram" ref="degreeProgram"  defaultValue={this.state.degreeProgram}  required>
                         <option value="Undergraduate Program">Undergraduate Program</option>
                         <option value="Graduate Program">Graduate Program</option>
                     </select>
+          
                     <InputGroup>
-                    <input  style={selectstyle} type="date" id="start" name="dob" ref="dob"  value={this.state.dob}
+                    <input  style={selectstyle} type="date" id="start" name="dob" ref="dob"  defaultValue={this.state.dob} required
                         ></input>
                     </InputGroup>
+
+                    {/* ProgramDrowdown */}
+
+                    <select style={selectstyle} type="progId" id="progId" name="progId" ref="progId"  defaultValue={this.state.progId} required>
+                    <option value="" disabled selected>Select Program</option>
+
+                     {this.state.programs.map((program,programId)=>{
+                            return(
+                                   
+                                    <option key={program.programId} value={program.programId}>{program.programName}</option>
+                                  
+
+                            )
+                        })}
+                        </select>
                     
                     <Button  type="submit" className="btn-round" color="primary" size="lg">Submit</Button>
                    
