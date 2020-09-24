@@ -22,7 +22,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "assets/scss/blk-design-system-react.scss?v=1.1.0";
 import "assets/demo/demo.css";
 
-import Index from "views/Index.js";
+import Index from "views/IndexSections/Index.js";
 import Program from "views/IndexSections/Program";
 import ProgramDetails from "views/IndexSections/ProgramDetails";
 import AddProgram from "views/IndexSections/AddProgram";
