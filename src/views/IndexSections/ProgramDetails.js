@@ -222,11 +222,11 @@ onDelete(){
                             return(
                                 <tr key={studentId}>
                                     <td>{student.studentId}</td>
-                                    <td><Link to={`student/${student.studentId}`}>{student.firstname}</Link></td>
+                                    <td><Link to={`/student/${student.studentId}`}>{student.firstname}</Link></td>
                                     <td>{student.lastname}</td>
                                     <td>{student.degreeProgram}</td>
                                     <td>{student.dob}</td>
-                                    <td><Link to={`program/${student.progId}`}>{student.progId}</Link></td>
+                                    <td>{student.progId}</td>
 
 
                                 </tr>
