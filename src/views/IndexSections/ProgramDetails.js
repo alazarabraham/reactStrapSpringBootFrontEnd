@@ -20,7 +20,6 @@ import classnames from "classnames";
 import {Link} from 'react-router-dom'
 import axios from 'axios';
 import IndexNavbar from '../../components/Navbars/IndexNavbar'
-import JavaScript from '../IndexSections/JavaScript'
 
 // reactstrap components
 import {

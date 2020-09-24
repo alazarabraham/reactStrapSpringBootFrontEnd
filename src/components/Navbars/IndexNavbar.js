@@ -149,7 +149,11 @@ class ComponentsNavbar extends React.Component {
                   target="_blank"
                   title="All Students"
                 >
-                  <i className="fab fa-user-graduate" />
+                  <Link to="/programs">
+                    <Button color="primary" type="button">
+                    Programs
+                    </Button>
+                  </Link>
                 </NavLink>
               </NavItem>
               <NavItem className="p-0">
@@ -157,23 +161,16 @@ class ComponentsNavbar extends React.Component {
                   data-placement="bottom"
                   rel="noopener noreferrer"
                   target="_blank"
-                  title="Programs"
+                  title="All Students"
                 >
-                  <i className="fab fa-university" />
+                  <Link to="/students">
+                    <Button color="primary" type="button">
+                    Students
+                    </Button>
+                  </Link>
                 </NavLink>
- 
-            
-             </NavItem>
-             <Link to="/students">
-              <Button color="primary" type="button">
-                  Students
-              </Button>
-            </Link>
-            <Link to="/programs">
-              <Button color="primary" type="button">
-                  Programs
-              </Button>
-            </Link>
+              </NavItem>
+             
             
             </Nav>
           </Collapse>
