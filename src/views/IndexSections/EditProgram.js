@@ -228,6 +228,7 @@ class EditProgram extends React.Component {
 
                     </select>
                     <select style={selectstyle} type="text" name="level" ref="level" defaultValue={this.state.level} required>
+                        <option selected disabled value={this.state.level}>{this.state.level}</option>
                         <option value="Undergraduate Program">Undergraduate Program</option>
                         <option value="Graduate Program">Graduate Program</option>
                     </select>

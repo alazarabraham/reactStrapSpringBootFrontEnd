@@ -212,8 +212,8 @@ onSubmit(e){
                         <option value="Undergraduate Program">Undergraduate Program</option>
                         <option value="Graduate Program">Graduate Program</option>
                     </select>
+             
                     <input  style={selectstyle} type="date" id="start" name="dob" ref="dob"   required></input>
-                    
                     
                     {/* ProgramDrowdown */}
                     <select style={selectstyle} type="progId" id="progId" name="progId" ref="progId"  placeholder="Program Name" required>

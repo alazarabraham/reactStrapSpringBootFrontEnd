@@ -68,6 +68,7 @@ getIndividualStudent(){
     .catch(err=> console.log(err))
 }
 
+
 onDelete(){
     let studentId = this.state.studentDetails.studentId;
     console.log(studentId)
@@ -125,13 +126,14 @@ onDelete(){
                     <TabPane tabId="link1">
                     <Table>
                         <thead>
+                          <tr>
                             <th> Id</th>
                             <th> First Name</th>
                             <th> Last Name</th>
                             <th> Level</th>
                             <th>Date of Birth</th>
                             <th>Program Id</th>
-
+                            </tr>
 
                             
                         </thead>

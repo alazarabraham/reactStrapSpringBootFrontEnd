@@ -31,16 +31,17 @@ class PageHeader extends React.Component {
             <h3 className="d-none d-sm-block">
               
             </h3>
-            <Link to="/students">
-              <Button color="primary" type="button">
-                  Students
-              </Button>
-            </Link>
             <Link to="/programs">
               <Button color="primary" type="button">
                   Programs
               </Button>
             </Link>
+            <Link to="/students">
+              <Button color="primary" type="button">
+                  Students
+              </Button>
+            </Link>
+            
           </div>
         </Container>
       </div>

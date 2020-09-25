@@ -214,7 +214,6 @@ onDelete(){
                         <th>Level </th>
                         <th>Date of Birth</th>
                         <th>Program Id</th>
-
                     </thead>
                     <tbody>
                         {this.state.studentsInProgram.map((student,studentId)=>{

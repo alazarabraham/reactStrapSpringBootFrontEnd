@@ -243,6 +243,8 @@ class EditStudent extends React.Component {
 
                     </InputGroup>
                     <select style={selectstyle} type="text" name="degreeProgram" ref="degreeProgram"  defaultValue={this.state.degreeProgram}  required>
+                    <option defaultValue={this.state.degreeProgram} disabled selected>{this.state.degreeProgram}</option>
+
                         <option value="Undergraduate Program">Undergraduate Program</option>
                         <option value="Graduate Program">Graduate Program</option>
                     </select>

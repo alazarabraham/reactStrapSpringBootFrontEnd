@@ -118,8 +118,8 @@ programName
                     <TabPane tabId="link1">
                     <Table>
                     <thead>
-                        <th> Id</th>
-                        <th> First Name</th>
+                        <th>Id</th>
+                        <th>First Name</th>
                         <th>Last Name</th>
                         <th>Level </th>
                         <th>Date of Birth</th>
